@@ -1,0 +1,19 @@
+<p>profile works!</p>
+<h1>Django REST API with Angular to fetch for Users</h1>
+<div>
+  <div *ngfor="let user of Users">
+      <ul >
+         <li>{{user.id}}</li>
+        <li>{{user.name}}</li> 
+        <li></li>
+        
+      </ul>
+    <img [src]='imageURL' />
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <button type="submit">Upload Users</button>
+
+    <!-- <input type="file" name="profile" (change)="onChange($event)" /> -->
+   
+  </form>

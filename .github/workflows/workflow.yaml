@@ -1,0 +1,57 @@
+
+
+
+
+
+job:
+  #Create the jobs
+  build:
+    name: Build and Test
+    runs-on: ubuntu_latest
+
+    strategy:
+      mtrix:
+        node-version: [14]
+
+  steps: 
+    -name: checkout
+    uses: action/checkout@v1
+
+    -name: install dependancies
+    run: npm ci
+
+    -name: Build
+    run: npm run test ci
+
+    #Upload Artifacts
+    -name: Archive build
+    if: success()
+    uses: actions/upload-artifact@v1 
+    with:
+      name: deploy_dist
+      path: dist
+    -name: Archive code coverage results
+    if: success()
+    uses: actions/upload-artifact@v1
+    with:
+      name: deploy_coverage
+      path: coverage
+      
+  #Create deploy job
+  deploy: 
+    run-on: ubuntu-latest
+    needs: build
+    steps:
+      -name: Checkout
+      uses: actions/checkout@v1
+      -name: Dowload Build
+      uses: actons/upload-artifact@v1
+      with:
+        name: deploy_dist
+        -name: Deploy to Githup Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+          with:
+            GITHUB_TOKEN: ${{ secret.GITHUB_TOKEN }}
+            BRANCH: gh-pages
+            FOLDER: deploy-dist/(github repo)
+
