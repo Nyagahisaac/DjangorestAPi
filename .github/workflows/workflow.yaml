@@ -53,5 +53,5 @@ job:
           with:
             GITHUB_TOKEN: ${{ secret.GITHUB_TOKEN }}
             BRANCH: gh-pages
-            FOLDER: deploy-dist/(github repo)
+            FOLDER: deploy-dist/(DjangorestApi)
 
