@@ -1,9 +1,9 @@
 <h1>Django REST API with Angular to fetch for Users</h1>
 <div>
-  <div *ngfor="let user of Users">
+  <div *ngfor="let comment of comments">
       <ul >
-         <li>{{user.id}}</li>
-        <li>{{user.name}}</li> 
+         <li>{{comment.id}}</li>
+        <li>{{comment.name}}</li> 
         <li></li>
         
       </ul>
@@ -11,7 +11,7 @@
   </div>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <button type="submit">Upload Users</button>
+    <a href="https://jsonplaceholder.typicode.com/comments">Upload comments</a>
 
     <!-- <input type="file" name="profile" (change)="onChange($event)" /> -->
    

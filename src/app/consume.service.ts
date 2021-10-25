@@ -11,19 +11,19 @@ export class ConsumeService {
   }
 
     
-  // DJANGO_SERVER: string = "http://127.0.0.1:8000";
+  // DJANGO_SERVER: string = "https://jsonplaceholder.typicode.com/comments";
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable <any>{
-    const url = "https://jsonplaceholder.typicode.com/users"
+  getComments(): Observable <any>{
+    const url = "https://jsonplaceholder.typicode.com/comments"
     return this.http.get<any>(url);
   }
-  createUsers(): Observable <any>{
-    const url = "https://jsonplaceholder.typicode.com/users"
+  createComment(): Observable <any>{
+    const url = "https://jsonplaceholder.typicode.com/comments"
     return this.http.get<any>(url);
   }
-  deleteUsers(): Observable <any>{
-    const url = "https://jsonplaceholder.typicode.com/users"
+  deleteComment(): Observable <any>{
+    const url = "https://jsonplaceholder.typicode.com/comments"
     return this.http.get<any>(url);
   }
 }

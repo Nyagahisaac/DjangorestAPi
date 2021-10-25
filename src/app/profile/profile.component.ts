@@ -11,18 +11,18 @@ import { ConsumeService } from '../consume.service';
 export class ProfileComponent implements OnInit {
 
 
-  DJANGO_SERVER = 'http://127.0.0.1:8000';
+  DJANGO_SERVER = 'https://jsonplaceholder.typicode.com/comments';
   form!: FormGroup;
   response: any;
   imageURL: any;
   FormGroup: any;
+  comments: any;
 
   constructor(private formBuilder: FormBuilder, private consumeService: ConsumeService) { }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      profile: ['']
-    });
+    this.comments= this.consumeService.getComments(
+     );
   }
 
   onChange(event: { target: { files: string | any[]; }; }) {
@@ -40,9 +40,9 @@ export class ProfileComponent implements OnInit {
     this.consumeService.subscribe(
       (res: { file: any; }) => {
         this.response = res;
-        this.imageURL = `${this.DJANGO_SERVER}${res.file}`;
+        this.imageURL = `${this.consumeService}${res.file}`;
         console.log(res);
-        console.log(this.imageURL);
+        console.log(this.comments);
       },
       (err: any) => {  
         console.log(err);
