@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import * as firebase from 'firebase/app';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
+import firebase from 'node_modules/fire/compact';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  constructor(public afAuth: AngularFireAuth ){}
   doFacebookLogin(){
     return new Promise<any>((resolve, reject) => {
       let provider = new firebase.auth.FacebookAuthProvider();
-      this.afAuth.auth
+      this.afAuth
       .signInWithPopup(provider)
-      .then((res: any) => {
+      .then((res) => {
         resolve(res);
       }, (err: any) => {
         console.log(err);
@@ -22,11 +23,10 @@ export class AuthService {
  }
  doGoogleLogin(){
   return new Promise<any>((resolve, reject) => {
-    let provider = new firebase.auth.GoogleAuthProvider();
+    let provider = (new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
-    this.afAuth.auth
-    .signInWithPopup(provider)
+    this.afAuth.signInWithPopup(provider)
     .then((res: any) => {
       resolve(res);
     })
@@ -34,6 +34,5 @@ export class AuthService {
 }
 
 
-  constructor(public afAuth: AngularFireAuth){}
 
 }

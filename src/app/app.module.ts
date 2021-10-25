@@ -39,6 +39,7 @@ import { RouterModule } from '@angular/router';
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'user', component: UserComponent},
+    ])
   ],
   providers: [ConsumeService],
   bootstrap: [AppComponent]
